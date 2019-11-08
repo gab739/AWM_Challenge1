@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    Configuration overview
+{% endblock %}
+
+{% block header %}
+    <h1>Nodes</h1>
+{% endblock %}
+
+{% block content %}
+    {% if formset %}
+        <form action="" method="post" class="container-fluid">
+            {{ formset.management_form }}
+            {% csrf_token %}
+            <ul>
+            {% for form in formset %}
+                <li>
+                    {{ form }}
+                    {% for cap, detail in capabilities.items %}
+                        <a href="{{ form.initial.id }}/{{ cap }}">Edit {{ cap }}</a>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+            </ul>
+        <input type="submit" name="save" value="Submit" />
+        </form>
+    {% endif %}
+{% endblock %}

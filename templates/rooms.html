@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    My rooms
+{% endblock %}
+
+{% block header %}
+    <h1>Rooms</h1>
+{% endblock %}
+
+{% block content %}
+    {% if formset %}
+        <form action="" method="post" class="container-fluid">
+            {{ formset.management_form }}
+            {% csrf_token %}
+            <ul>
+            {% for form in formset %}
+                <li>
+                    {{ form }}
+                </li>
+            {% endfor %}
+            </ul>
+            <input type="submit" name="save" value="Submit" />
+        </form>
+    {% endif %}
+{% endblock %}
